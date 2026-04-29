@@ -1,22 +1,28 @@
-// Initialize AOS with a fallback
+// Initialize Scroll Animations with Intersection Observer
 document.addEventListener('DOMContentLoaded', () => {
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 50,
-            disable: 'mobile' // Disable on small screens for better performance
-        });
-    }
+    // Add reveal class to all data-aos elements for backward compatibility
+    document.querySelectorAll('[data-aos]').forEach(el => {
+        el.classList.add('reveal');
+    });
 
-    // Fallback: If elements are still hidden after 2 seconds, force them visible
-    setTimeout(() => {
-        const aosElements = document.querySelectorAll('[data-aos]');
-        aosElements.forEach(el => {
-            el.style.opacity = '1';
-            el.style.transform = 'none';
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Optional: stop observing after reveal
+                // observer.unobserve(entry.target);
+            }
         });
-    }, 2000);
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => {
+        observer.observe(el);
+    });
 });
 
 // Language Translations

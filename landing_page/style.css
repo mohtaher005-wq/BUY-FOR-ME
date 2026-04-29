@@ -625,12 +625,77 @@ footer {
     to { opacity: 1; }
 }
 
-/* Mobile Responsive */
-@media (max-width: 992px) {
-    .hero-grid, .roles-grid { grid-template-columns: 1fr; text-align: center; }
-    .hero-content h1 { font-size: 48px; }
-    .cta-buttons { justify-content: center; }
-    .nav-links { display: none; }
-    .hide-mobile { display: none; }
-    .stats-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+/* Premium Animations & Effects */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.5); }
+    100% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.2); }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-content h1 {
+    font-size: 72px;
+    background: linear-gradient(to bottom, #ffffff, #8bc34a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+}
+
+.btn-download-main {
+    animation: glow 3s infinite;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.role-card {
+    background: rgba(26, 34, 32, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.role-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(76, 175, 80, 0.05), transparent 70%);
+    pointer-events: none;
+}
+
+.icon {
+    font-size: 32px !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.stat-item .number {
+    background: linear-gradient(45deg, #fff, var(--primary-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 56px;
+}
+
+/* Fix mobile spacing */
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 42px; }
+    .roles-grid { grid-template-columns: 1fr; }
 }
