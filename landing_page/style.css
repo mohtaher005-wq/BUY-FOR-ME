@@ -34,6 +34,14 @@ body {
     overflow-x: hidden;
 }
 
+/* Force elements with animations to be visible if AOS fails */
+[data-aos], [data-aos^="fade"], [data-aos^="zoom"], [data-aos^="flip"] {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    transition: none !important;
+}
+
 #bg-canvas {
     position: fixed;
     top: 0;
