@@ -390,6 +390,37 @@ ul {
     box-shadow: 0 40px 80px rgba(0,0,0,0.4);
 }
 
+.role-card {
+    background: var(--dark-surface);
+    padding: 40px;
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition);
+}
+
+.role-card h3 {
+    margin: 20px 0;
+    font-size: 24px;
+    color: var(--primary-light);
+}
+
+.role-list {
+    text-align: right;
+}
+
+.role-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    color: var(--gray);
+}
+
+.role-list i {
+    color: var(--primary-light);
+    margin-top: 5px;
+}
+
 .role-content h2 {
     font-size: 36px;
     font-weight: 900;
