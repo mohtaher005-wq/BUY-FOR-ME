@@ -3,106 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buy For Me | اشترِ لي</title>
+    <meta name="description" content="Buy For Me - المنصة الجزائرية الشاملة للتسوق الذكي وإدارة المتاجر وفرص العمل. حمّل التطبيق مجاناً.">
+    <meta property="og:title" content="Buy For Me | منصة التجارة الذكية بالجزائر">
+    <meta property="og:description" content="اشترِ، بع، واعمل بذكاء مع Buy For Me - التطبيق الجزائري المتكامل.">
+    <meta property="og:image" content="app_promo.png">
+    <title>Buy For Me | منصة التجارة الذكية بالجزائر</title>
+
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 </head>
 <body class="dark-mode">
+
+    <!-- Background Elements -->
+    <div id="mouse-glow"></div>
     <canvas id="bg-canvas"></canvas>
 
-    <nav class="navbar">
+    <!-- ============================
+         NAVBAR
+         ============================ -->
+    <nav class="navbar" id="navbar">
         <div class="container nav-content">
-            <div class="logo">
+            <a href="#" class="logo">
                 <i class="fas fa-shopping-bag"></i>
                 <span>BUY FOR ME</span>
-            </div>
-            
+            </a>
+
             <div class="nav-actions">
-                <button id="theme-toggle" class="btn-icon">
+                <button id="theme-toggle" class="btn-icon" aria-label="تبديل الثيم">
                     <i class="fas fa-moon"></i>
                 </button>
-                
+
                 <div class="lang-switcher">
-                    <button class="btn-icon">
+                    <button class="btn-icon" aria-label="اختر اللغة">
                         <i class="fas fa-globe"></i>
                     </button>
                     <div class="lang-dropdown">
-                        <a href="javascript:void(0)" onclick="setLanguage('ar')">العربية</a>
-                        <a href="javascript:void(0)" onclick="setLanguage('en')">English</a>
-                        <a href="javascript:void(0)" onclick="setLanguage('fr')">Français</a>
+                        <a href="javascript:void(0)" onclick="setLanguage('ar')"><i class="fas fa-check" id="check-ar"></i> العربية</a>
+                        <a href="javascript:void(0)" onclick="setLanguage('en')"><i class="fas fa-check" id="check-en" style="opacity:0"></i> English</a>
+                        <a href="javascript:void(0)" onclick="setLanguage('fr')"><i class="fas fa-check" id="check-fr" style="opacity:0"></i> Français</a>
                     </div>
                 </div>
-                
-                <a href="buy-for-me.apk" class="btn-download-small hide-mobile" data-i18n="nav_download">حمل الآن</a>
+
+                <a href="https://www.mediafire.com/file/b3jtegnk5acjij2/buy-for-me.apk/file" target="_blank" class="btn-download-small hide-mobile" id="nav-dl" data-i18n="nav_download">تحميل APK</a>
             </div>
         </div>
     </nav>
 
-    <header class="hero">
+    <!-- ============================
+         HERO SECTION
+         ============================ -->
+    <header class="hero" id="hero">
         <div class="container hero-grid">
             <div class="hero-content">
-                <h1 data-i18n="hero_title">تطبيق "اشترِ لي" <br><span class="highlight">كل ما تحتاجه في مكان واحد</span></h1>
-                <p data-i18n="hero_desc">منصة جزائرية مبتكرة تجمع بين التسوق الذكي، إدارة المتاجر، وفرص العمل.</p>
+                <div class="hero-badge">
+                    <i class="fas fa-star"></i>
+                    <span data-i18n="hero_badge">المنصة الجزائرية الأولى للتجارة الذكية</span>
+                </div>
+                <h1 data-i18n="hero_title">
+                    اكتشف مستقبل <br>
+                    <span class="highlight">التجارة الذكية في الجزائر</span>
+                </h1>
+                <p data-i18n="hero_desc">
+                    منصة Buy For Me ليست مجرد تطبيق، بل هي نظام متكامل يربط الزبائن بالتجار، ويوفر فرص عمل حقيقية للشباب الجزائري.
+                </p>
                 <div class="cta-buttons">
-                    <a href="buy-for-me.apk" class="btn-download-main" download>
+                    <a href="https://www.mediafire.com/file/b3jtegnk5acjij2/buy-for-me.apk/file" target="_blank" class="btn-download-main" id="hero-dl">
                         <i class="fab fa-android"></i>
-                        <span data-i18n="btn_download">تحميل APK للأندرويد (مجاناً)</span>
+                        <span data-i18n="btn_download">تحميل التطبيق مجاناً</span>
+                    </a>
+                    <a href="#features" class="btn-secondary">
+                        <i class="fas fa-play-circle"></i>
+                        <span data-i18n="btn_explore">اكتشف المزايا</span>
                     </a>
                 </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="h-num">25K+</span>
+                        <span class="h-lbl" data-i18n="stat_downloads">تحميل</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="h-num">1.2K+</span>
+                        <span class="h-lbl" data-i18n="stat_stores">متجر</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="h-num">4.95★</span>
+                        <span class="h-lbl" data-i18n="stat_rating">تقييم</span>
+                    </div>
+                </div>
             </div>
-            <div class="hero-image reveal">
-                <img src="app_promo.png" alt="App Preview">
+            <div class="hero-image">
+                <img src="app_promo.png" alt="Buy For Me App Preview" id="hero-img">
             </div>
         </div>
     </header>
 
+    <!-- ============================
+         FEATURES (WHY US)
+         ============================ -->
+    <section id="features">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-badge" data-i18n="features_badge">🚀 مزايا حصرية</span>
+                <h2 data-i18n="features_header">لماذا تختار Buy For Me؟</h2>
+                <p data-i18n="features_subheader">نظام متكامل يخدم الجميع — الزبون، التاجر، والباحث عن عمل.</p>
+                <div class="underline"></div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal" data-delay="1">
+                    <div class="card-icon green"><i class="fas fa-map-location-dot"></i></div>
+                    <h3 data-i18n="feat_map">خريطة تفاعلية ذكية</h3>
+                    <p data-i18n="feat_map_desc">اكتشف المتاجر المفتوحة من حولك في الوقت الحقيقي. فلاتر ذكية حسب المسافة والفئة والتقييم.</p>
+                </div>
+                <div class="feature-card reveal" data-delay="2">
+                    <div class="card-icon blue"><i class="fas fa-store"></i></div>
+                    <h3 data-i18n="feat_merchant">إدارة متاجر احترافية</h3>
+                    <p data-i18n="feat_merchant_desc">رفع المنتجات، إدارة الطلبات، والإحصائيات المباشرة كلها في راحة يدك.</p>
+                </div>
+                <div class="feature-card reveal" data-delay="3">
+                    <div class="card-icon purple"><i class="fas fa-briefcase"></i></div>
+                    <h3 data-i18n="feat_jobs">فرص عمل محلية</h3>
+                    <p data-i18n="feat_jobs_desc">خريطة مخصصة للباحثين عن عمل تتيح التقديم الفوري للمتاجر القريبة بضغطة واحدة.</p>
+                </div>
+                <div class="feature-card reveal" data-delay="4">
+                    <div class="card-icon orange"><i class="fas fa-shield-halved"></i></div>
+                    <h3 data-i18n="feat_secure">آمن وموثوق</h3>
+                    <p data-i18n="feat_secure_desc">بياناتك وطلباتك محمية بأحدث معايير الأمن والتشفير. ثق بنا لتتعامل بثقة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+         REAL WORLD / GALLERY
+         ============================ -->
+    <section id="real-impact">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-badge" data-i18n="real_badge">📸 الواقع الحقيقي</span>
+                <h2 data-i18n="real_impact_header">Buy For Me على أرض الواقع</h2>
+                <p data-i18n="real_impact_sub">من الرف إلى بابك — نحن نعيش التجربة معك كل يوم.</p>
+                <div class="underline"></div>
+            </div>
+            <div class="gallery-grid">
+                <!-- Card 1: Large -->
+                <div class="gallery-card reveal-left">
+                    <img
+                        src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1200"
+                        alt="Supermarket Shopping Service">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag" data-i18n="gtag_1">التسوق الذكي</span>
+                        <h3 data-i18n="real_1_title">خدمة لا تتوقف</h3>
+                        <p data-i18n="real_1_desc">نتعامل مع أكبر المساحات التجارية لضمان طلباتكم تصل في أسرع وقت ممكن.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="gallery-card reveal-right" data-delay="1">
+                    <img
+                        src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=900"
+                        alt="Mobile App in Use">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag" data-i18n="gtag_2">التطبيق</span>
+                        <h3 data-i18n="real_2_title">طلب بنقرة واحدة</h3>
+                        <p data-i18n="real_2_desc">واجهة سهلة ومبسطة تتيح لك تقديم طلبك خلال ثوانٍ معدودة.</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="gallery-card reveal-right" data-delay="2">
+                    <img
+                        src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&q=80&w=900"
+                        alt="Delivery Service">
+                    <div class="gallery-overlay">
+                        <span class="gallery-tag" data-i18n="gtag_3">التوصيل</span>
+                        <h3 data-i18n="real_3_title">توصيل سريع وآمن</h3>
+                        <p data-i18n="real_3_desc">شبكة واسعة من الموصلين المحترفين تغطي كامل ولايات الوطن.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+         USER ROLES
+         ============================ -->
     <section id="roles">
         <div class="container">
             <div class="section-header reveal">
-                <h2 data-i18n="roles_header">نظام متكامل لجميع الفئات</h2>
+                <span class="section-badge" data-i18n="roles_badge">👥 ثلاثة أدوار</span>
+                <h2 data-i18n="roles_header">تجربة مخصصة لكل مستخدم</h2>
+                <p data-i18n="roles_sub">سواء كنت زبوناً، تاجراً، أو باحثاً عن عمل — Buy For Me مصمم خصيصاً لك.</p>
                 <div class="underline"></div>
             </div>
             <div class="roles-grid">
-                <div class="role-card reveal">
-                    <div class="icon green"><i class="fas fa-user"></i></div>
-                    <h3 data-i18n="role_customer">أنا زبون</h3>
-                    <p data-i18n="role_customer_desc">تصفح المنتجات، قارن الأسعار، واطلب ما تحتاجه ليصلك لباب منزلك.</p>
+                <div class="role-card reveal" data-delay="1">
+                    <div class="icon green"><i class="fas fa-user-check"></i></div>
+                    <h3 data-i18n="role_customer">واجهة الزبون</h3>
+                    <p data-i18n="role_customer_long">تصفح المنتجات بحسب الفئات، قارن الأسعار، صنّف المتاجر بالنجوم، وتابع طلبك لحظة بلحظة حتى وصوله لبابك.</p>
                 </div>
-                <div class="role-card reveal">
+                <div class="role-card reveal" data-delay="2">
                     <div class="icon orange"><i class="fas fa-store"></i></div>
-                    <h3 data-i18n="role_merchant">أنا تاجر</h3>
-                    <p data-i18n="role_merchant_desc">حول متجرك التقليدي لمتجر رقمي في دقائق، واكتسب زبائن جدد يومياً.</p>
+                    <h3 data-i18n="role_merchant">لوحة تحكم التاجر</h3>
+                    <p data-i18n="role_merchant_long">أنشئ متجرك الرقمي في دقائق، ارفع منتجاتك، نظّمها في فئات، واستقبل الطلبات مع تنبيهات فورية لا تفوّت أي زبون.</p>
+                </div>
+                <div class="role-card reveal" data-delay="3">
+                    <div class="icon purple"><i class="fas fa-search-location"></i></div>
+                    <h3 data-i18n="role_jobseeker">نظام الباحث عن عمل</h3>
+                    <p data-i18n="role_jobseeker_long">استكشف الخريطة لمعرفة المتاجر التي تطلب كوادر، وأرسل طلبك مباشرة بضغطة زر. فرصتك قريبة منك!</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ============================
+         TESTIMONIALS
+         ============================ -->
     <section class="testimonials" id="comments">
         <div class="container">
             <div class="section-header reveal">
-                <h2 data-i18n="test_header">ماذا يقول مستخدمونا؟</h2>
+                <span class="section-badge" data-i18n="test_badge">💬 آراء حقيقية</span>
+                <h2 data-i18n="test_header">شركاؤنا في النجاح يتحدثون</h2>
                 <div class="underline"></div>
             </div>
             <div class="testimonials-grid">
-                <div class="testimonial-card reveal">
-                    <p data-i18n="user_1_text">"تطبيق ممتاز ساعدني في الوصول لزبائن في مناطق لم أكن أتوقعها."</p>
+                <div class="testimonial-card reveal" data-delay="1">
+                    <div class="stars">★★★★★</div>
+                    <p data-i18n="user_1_text">"كنت أواجه صعوبة كبيرة في التسويق المحلي. بفضل Buy For Me تضاعفت مبيعاتي في شهر واحد فقط، ووصلت لزبائن لم أتوقعهم!"</p>
                     <div class="user-meta">
-                        <i class="fas fa-user-circle"></i>
+                        <div class="user-avatar">ي</div>
                         <div class="user-info">
-                            <h4 data-i18n="user_1_name">أحمد بن محمد</h4>
-                            <span data-i18n="user_1_role">تاجر تجزئة</span>
+                            <h4 data-i18n="user_1_name">ياسين بن عيسى</h4>
+                            <span data-i18n="user_1_role">صاحب متجر إلكترونيات — الجزائر العاصمة</span>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card reveal">
-                    <p data-i18n="user_2_text">"أحب ميزة الخريطة كثيراً، أستطيع أن أرى المتاجر المفتوحة حولي وأطلب بسرعة."</p>
+                <div class="testimonial-card reveal" data-delay="2">
+                    <div class="stars">★★★★★</div>
+                    <p data-i18n="user_2_text">"التطبيق سهل الاستخدام بشكل لا يصدق. أطلب مستلزماتي من العمل وتصلني حين أعود للمنزل. وفّر لي وقتاً ثميناً كل يوم."</p>
                     <div class="user-meta">
-                        <i class="fas fa-user-circle"></i>
+                        <div class="user-avatar">ل</div>
                         <div class="user-info">
-                            <h4 data-i18n="user_2_name">سارة علي</h4>
-                            <span data-i18n="user_2_role">زبونة دائمة</span>
+                            <h4 data-i18n="user_2_name">ليلى مرابط</h4>
+                            <span data-i18n="user_2_role">زبونة وفية — وهران</span>
                         </div>
                     </div>
                 </div>
@@ -110,43 +252,53 @@
         </div>
     </section>
 
+    <!-- ============================
+         STATS
+         ============================ -->
     <section class="stats reveal">
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <span class="number" id="downloads-count">10K+</span>
-                    <span class="label" data-i18n="stat_downloads">تحميل</span>
+                    <span class="number" id="downloads-count">25K+</span>
+                    <span class="label" data-i18n="stat_downloads_full">تحميل نشط</span>
                 </div>
                 <div class="stat-item">
-                    <span class="number" id="stores-count">500+</span>
-                    <span class="label" data-i18n="stat_stores">متجر مسجل</span>
+                    <span class="number" id="stores-count">1.2K+</span>
+                    <span class="label" data-i18n="stat_stores_full">متجر معتمد</span>
                 </div>
                 <div class="stat-item">
-                    <span class="number" id="jobs-count">100+</span>
-                    <span class="label" data-i18n="stat_jobs">فرصة عمل</span>
+                    <span class="number" id="jobs-count">350+</span>
+                    <span class="label" data-i18n="stat_jobs_full">فرصة عمل متاحة</span>
                 </div>
                 <div class="stat-item">
-                    <span class="number">4.9/5</span>
-                    <span class="label" data-i18n="stat_rating">تقييم</span>
+                    <span class="number">4.95/5</span>
+                    <span class="label" data-i18n="stat_rating_full">تقييم المستخدمين</span>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ============================
+         FOOTER
+         ============================ -->
     <footer>
         <div class="container footer-content reveal">
-            <div class="logo">
+            <div class="footer-logo">
                 <i class="fas fa-shopping-bag"></i>
                 <span>BUY FOR ME</span>
             </div>
-            <p data-i18n="copyright">© 2026 جميع الحقوق محفوظة - Buy For Me الجزائر</p>
+            <p class="footer-slogan" data-i18n="footer_slogan">نحو اقتصاد رقمي جزائري أفضل</p>
+            <p class="footer-copy" data-i18n="copyright">© 2026 جميع الحقوق محفوظة — Buy For Me الجزائر</p>
             <div class="socials">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.facebook.com/share/1JGvkdFTJt/" target="_blank" class="fb" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="ig" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="li" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="tw" aria-label="Twitter / X"><i class="fab fa-x-twitter"></i></a>
             </div>
         </div>
     </footer>
+
+    <!-- ── DOWNLOAD SUCCESS TOAST (optional) ── -->
 
     <script src="script.js"></script>
 </body>
