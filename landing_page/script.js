@@ -1,11 +1,23 @@
-// Initialize AOS
-if (typeof AOS !== 'undefined') {
-    AOS.init({
-        duration: 1000,
-        once: true,
-        offset: 100
-    });
-}
+// Initialize AOS with a fallback
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50,
+            disable: 'mobile' // Disable on small screens for better performance
+        });
+    }
+
+    // Fallback: If elements are still hidden after 2 seconds, force them visible
+    setTimeout(() => {
+        const aosElements = document.querySelectorAll('[data-aos]');
+        aosElements.forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+        });
+    }, 2000);
+});
 
 // Language Translations
 const translations = {
